@@ -1,11 +1,11 @@
 import './css/App.css';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
 import CarTransferPage from './pages/CarTransferPage';
 import IncomingTransfersPage from './pages/IncomingTransfersPage';
 import LoginPage from './pages/LoginPage';
-import NavBar from './components/NavBar';
+// import NavBar from './components/NavBar';
 import RegisterPage from './pages/RegisterPage';
 
 

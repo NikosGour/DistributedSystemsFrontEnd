@@ -1,6 +1,6 @@
 import NavBar from "../components/NavBar";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -14,6 +14,8 @@ const RegisterPage = () => {
     const [address, setAddress] = useState("");
     const [afm, setAfm] = useState("");
 
+    const navigate = useNavigate();
+
     const validateForm = async (e) => {
         e.preventDefault();
 
@@ -26,20 +28,19 @@ const RegisterPage = () => {
             afm: afm
         }
 
-
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Basic " + btoa("root:root"));
-
-
-        const res = await fetch("http://localhost:7979/api/users", myHeaders)
-        console.log(res);
-        const data = await res.json();
-        console.log(data);
+        const headers = {}
+        headers["Authorization"] = "Basic " + btoa("root:root");
+        headers["Content-Type"] = "application/json";
 
 
-        // const res = await fetch("http://localhost:7979/api/users", { mode: 'no-cors' })
-        // const data = await res.json();
-        // console.log(data);
+        const res = await fetch("http://localhost:7979/api/users", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(user)
+        });
+
+        navigate(-1);
+        alert("User created successfully!");
     }
 
 
