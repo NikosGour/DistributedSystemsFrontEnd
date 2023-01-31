@@ -1,13 +1,13 @@
 import NavBar from "../components/NavBar";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 const CarTransferPage = () => {
 
-
+    const loc = useLocation();
     const { license_plate } = useParams();
 
     return (
         <div>
-            <NavBar />
+            <NavBar user={{ ...loc.state }} />
             <h1 className="header">Car Transfer Page</h1>
             <h3 className="subheader">TRANSFER FOR {license_plate.toUpperCase()}</h3>
             <form className="vertical_form" action="/car_transfer">

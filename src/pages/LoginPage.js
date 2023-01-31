@@ -1,8 +1,9 @@
 import NavBar from "../components/NavBar";
-import { Link, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const LoginPage = () => {
+    const loc = useLocation();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -10,7 +11,7 @@ const LoginPage = () => {
 
     return (
         <div>
-            <NavBar />
+            <NavBar user={{ ...loc.state }} />
             <h1 className="header">Login Page</h1>
             <form className="vertical_form" action="/login">
                 <label htmlFor="username">Username:</label>
