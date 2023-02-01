@@ -6,8 +6,8 @@ const CarTransferPage = () => {
     const { license_plate } = useParams();
 
     return (
-        <div>
-            <NavBar user={{ ...loc.state }} />
+        <>
+            <NavBar user={loc.state} />
             <h1 className="header">Car Transfer Page</h1>
             <h3 className="subheader">TRANSFER FOR {license_plate.toUpperCase()}</h3>
             <form className="vertical_form" action="/car_transfer">
@@ -17,7 +17,7 @@ const CarTransferPage = () => {
                 <input type="text" id="afm" name="afmTransferee" />
                 <input type="submit" value="Submit" />
             </form>
-        </div>
+        </>
     );
 }
 export default CarTransferPage;

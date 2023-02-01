@@ -41,7 +41,7 @@ const RegisterPage = () => {
 
         const data = await res.json();
         console.log(data);
-        navigate("/login", { state: { username: data.username, id: data.id } });
+        navigate("/login");
         alert("User created successfully!");
     }
 

@@ -1,23 +1,43 @@
 import NavBar from "../components/NavBar";
-import { Link, Navigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const LoginPage = () => {
     const loc = useLocation();
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
 
+    const validate_form = async (e) => {
+        e.preventDefault();
+
+        const headers = {};
+        headers["Authorization"] = "Basic " + btoa(`${username}:${password}`);
+        headers["Content-Type"] = "plain/text";
+
+        const res = await fetch("http://localhost:7979/api/users/login",
+            { method: "POST", headers: headers, body: username });
+
+        const data = await res.json();
+
+        if (res.status === 250) {
+            alert("Login successful!");
+            navigate("/", { state: { username: username, id: data.id, auth: headers["Authorization"] } });
+        }
+
+    }
+
 
     return (
         <div>
-            <NavBar user={{ ...loc.state }} />
+            <NavBar user={loc.state} />
             <h1 className="header">Login Page</h1>
-            <form className="vertical_form" action="/login">
+            <form className="vertical_form" onSubmit={validate_form}>
                 <label htmlFor="username">Username:</label>
-                <input type="text" />
+                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                 <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <Link to="/register">If you don't have an account, please register here</Link>
                 <input style={{ transform: "translateX(164%)" }} type="submit" value="Login" />
             </form>
