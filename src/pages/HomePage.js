@@ -15,7 +15,6 @@ const HomePage = () => {
             fetch(`http://localhost:7979/api/cars/${loc.state.id}`, { method: "GET", headers: headers })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     setCars(data);
                 });
         }

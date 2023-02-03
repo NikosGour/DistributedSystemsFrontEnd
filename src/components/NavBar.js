@@ -13,7 +13,11 @@ const NavBar = (props) => {
         <ul className='navbar'>
             <li><h1 onClick={() => { if (!isInHomePage) navigate("/", { state: user }) }}>{user?.username}</h1></li>
             <li><img onClick={() => { if (!isInIncomingPage) navigate("/incoming", { state: user }) }} src={mail_pic} alt='Kapio' width={30} height={30}></img></li>
-            <li><h3 onClick={() => { navigate("/login", { state: user }) }}>Login/Logout</h3></li>
+            {user == null ?
+                <li><h3 onClick={() => { navigate("/login", { state: user }) }}>Login</h3></li>
+                :
+                <li><h3 onClick={() => { navigate("/", { state: null }) }}>Logout</h3></li>
+            }
         </ul>
     </>
     );

@@ -40,7 +40,6 @@ const RegisterPage = () => {
         });
 
         const data = await res.json();
-        console.log(data);
         navigate("/login");
         alert("User created successfully!");
     }
