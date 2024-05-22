@@ -7,10 +7,8 @@ import IncomingTransfersPage from './pages/IncomingTransfersPage';
 import LoginPage from './pages/LoginPage';
 // import NavBar from './components/NavBar';
 import RegisterPage from './pages/RegisterPage';
-import { BASE_URL } from './assets'
 
 function App() {
-  console.log(BASE_URL)
   return (
     <div className='App'>
       <Routes>
