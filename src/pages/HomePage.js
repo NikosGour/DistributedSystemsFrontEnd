@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import { useLocation, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../assets";
 
 const HomePage = () => {
     const loc = useLocation();
@@ -12,7 +13,7 @@ const HomePage = () => {
             const headers = {};
             headers["Authorization"] = loc.state.auth;
 
-            fetch(`http://localhost:7979/api/cars/${loc.state.id}`, { method: "GET", headers: headers })
+            fetch(BASE_URL + `/api/cars/${loc.state.id}`, { method: "GET", headers: headers })
                 .then(res => res.json())
                 .then(data => {
                     setCars(data);

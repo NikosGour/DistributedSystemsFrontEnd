@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../assets";
 const CarTransferPage = () => {
 
     const loc = useLocation();
@@ -15,7 +16,7 @@ const CarTransferPage = () => {
 
         const headers = {};
         headers["Authorization"] = loc.state.auth;
-        const res = await fetch(`http://localhost:7979/api/users/afm/${afm_transferee}`, { method: "POST", headers: headers })
+        const res = await fetch(BASE_URL + `/api/users/afm/${afm_transferee}`, { method: "POST", headers: headers })
         const data = await res.json();
         const id = data;
 
@@ -25,7 +26,7 @@ const CarTransferPage = () => {
         }
 
         headers["Content-Type"] = "plain/text";
-        const res2 = await fetch(`http://localhost:7979/api/actions/${license_plate}/${id}`, { method: "POST", headers: headers, body: transfer_address })
+        const res2 = await fetch(BASE_URL + `/api/actions/${license_plate}/${id}`, { method: "POST", headers: headers, body: transfer_address })
         const data2 = await res2.json();
         if (data2 === true) {
             alert("Transfer successful!");

@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { BASE_URL } from "../assets";
 
 const LoginPage = () => {
     const loc = useLocation();
@@ -16,7 +17,7 @@ const LoginPage = () => {
         headers["Authorization"] = "Basic " + btoa(`${username}:${password}`);
         headers["Content-Type"] = "plain/text";
 
-        const res = await fetch("http://localhost:7979/api/users/login",
+        const res = await fetch(BASE_URL + "/ api / users / login",
             { method: "POST", headers: headers, body: username });
 
         const data = await res.json();

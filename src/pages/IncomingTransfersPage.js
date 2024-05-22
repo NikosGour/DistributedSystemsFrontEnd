@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import { useLocation } from "react-router-dom";
+import { BASE_URL } from "../assets";
 
 const IncomingTransfersPage = () => {
     const loc = useLocation();
@@ -11,7 +12,7 @@ const IncomingTransfersPage = () => {
             const headers = {};
             headers["Authorization"] = loc.state.auth;
 
-            fetch(`http://localhost:7979/api/actions/${loc.state.id}`, { method: "GET", headers: headers })
+            fetch(BASE_URL + `/api/actions/${loc.state.id}`, { method: "GET", headers: headers })
                 .then(res => res.json())
                 .then(data => {
                     setCars(data);
@@ -24,12 +25,12 @@ const IncomingTransfersPage = () => {
         const headers = {};
         headers["Authorization"] = loc.state.auth;
 
-        const res = await fetch(`http://localhost:7979/api/actions/${car.liscence_plate_number}/car`, { method: "GET", headers: headers })
+        const res = await fetch(BASE_URL + `/api/actions/${car.liscence_plate_number}/car`, { method: "GET", headers: headers })
         const data = await res.json();
 
         const transfer_id = data.id;
 
-        const res2 = await fetch(`http://localhost:7979/api/actions/${loc.state.id}/${transfer_id}/accept`, { method: "POST", headers: headers })
+        const res2 = await fetch(BASE_URL + `/api/actions/${loc.state.id}/${transfer_id}/accept`, { method: "POST", headers: headers })
         const data2 = await res2.json();
 
         if (data2 === true) {

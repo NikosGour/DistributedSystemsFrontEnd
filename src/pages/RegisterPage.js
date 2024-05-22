@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { BASE_URL } from "../assets";
 
 
 
@@ -33,7 +33,7 @@ const RegisterPage = () => {
         headers["Content-Type"] = "application/json";
 
 
-        const res = await fetch("http://localhost:7979/api/users", {
+        const res = await fetch(BASE_URL + ":7979/api/users", {
             method: "POST",
             headers: headers,
             body: JSON.stringify(user)
