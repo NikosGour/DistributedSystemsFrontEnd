@@ -17,7 +17,7 @@ const LoginPage = () => {
         headers["Authorization"] = "Basic " + btoa(`${username}:${password}`);
         headers["Content-Type"] = "plain/text";
 
-        const res = await fetch(BASE_URL + "/ api / users / login",
+        const res = await fetch(BASE_URL + "/api/users/login",
             { method: "POST", headers: headers, body: username });
 
         const data = await res.json();

@@ -33,7 +33,7 @@ const RegisterPage = () => {
         headers["Content-Type"] = "application/json";
 
 
-        const res = await fetch(BASE_URL + ":7979/api/users", {
+        const res = await fetch(BASE_URL + "/api/users", {
             method: "POST",
             headers: headers,
             body: JSON.stringify(user)
